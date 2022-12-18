@@ -1,10 +1,4 @@
 package com.driver;
-//        Veg pizza base price = 300
-//        Non-veg pizza base price = 400
-//        Extra Cheese Price = 80
-//        Extra Toppings For Veg Pizza = 70
-//        Extra Toppings For Non-veg Pizza = 120
-//        Paper bag Price = 20
 public class Pizza {
 
     private int price;
@@ -61,15 +55,15 @@ public class Pizza {
     public String getBill(){
         // your code goes here
         if(this.cheese){
-            this.bill+="Extra Cheese Added= "+this.cheesePrice +"\n";
+            this.bill+="Extra Cheese Added: "+this.cheesePrice +"\n";
         }
         if(this.toppings){
-            this.bill+="Extra Toppings Added = "+this.toppingsPrice +"\n";
+            this.bill+="Extra Toppings Added: "+this.toppingsPrice +"\n";
         }
         if(this.takeAway){
-            this.bill+="Paperbag Added:"+this.takePrice+"\n";
+            this.bill+="Paperbag Added: "+this.takePrice+"\n";
         }
-        this.bill+="Total Price:"+getPrice()+"\n";
+        this.bill+="Total Price: "+getPrice()+"\n";
         return this.bill;
     }
 }
