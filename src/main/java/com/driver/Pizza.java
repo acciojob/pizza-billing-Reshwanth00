@@ -1,78 +1,69 @@
 package com.driver;
 public class Pizza {
-
     private int price;
-    private boolean takeAway;
-    private int takePrice;
-    private Boolean isVeg;
+    private boolean isVeg;
     private String bill;
-    private boolean isbilladded=false;
-    private boolean cheese=false;
     private int cheesePrice;
-    private boolean toppings=false;
     private int toppingsPrice;
-    public Pizza(Boolean isVeg){
-        this.isVeg = isVeg;
-        if(isVeg){
-            this.bill = "Base Price Of The Pizza: 300 \n";
-            this.price += 300;
-        }
-        else{
-            this.bill = "Base Price Of The Pizza: 400 \n";
-            this.price += 400;
-        }
-    }
+    private int takeAwayPrice;
+    private boolean isCheeseAdded;
+    private boolean isToppingsAdded;
+    private boolean isTakeAwayAdded;
+    private boolean isBillGenerated;
 
+    public Pizza(boolean isVeg) {
+        this.isVeg = isVeg;
+        this.cheesePrice = 80;
+        this.takeAwayPrice = 20;
+        if (isVeg == true) {
+            this.price = 300;
+            this.toppingsPrice = 70;
+        } else {
+            this.price = 400;
+            this.toppingsPrice = 120;
+        }
+        this.isTakeAwayAdded = false;
+        this.isToppingsAdded = false;
+        this.isCheeseAdded = false;
+        this.bill = "Base Price Of The Pizza: " + this.price + "\n";
+    }
     public int getPrice(){
         return this.price;
     }
-
     public void addExtraCheese(){
-        if(cheese==false) {
-            this.cheese = true;
-            this.cheesePrice += 80;
-            this.price += 80;
+        if(isCheeseAdded==false){
+            this.price = this.price + this.cheesePrice;
+            isCheeseAdded=true;
         }
     }
 
     public void addExtraToppings(){
-        // your code goes here
-        if(toppings==false) {
-            this.toppings = true;
-            if (this.isVeg) {
-                this.price += 70;
-                this.toppingsPrice += 70;
-            } else {
-                this.price += 120;
-                this.toppingsPrice += 120;
-            }
+        if(isToppingsAdded==false){
+            this.price = this.price+this.toppingsPrice;
+            isToppingsAdded = true;
         }
     }
 
     public void addTakeaway(){
-        // your code goes here
-        if(takeAway==false) {
-            this.takeAway = true;
-            this.takePrice += 20;
-            this.price += 20;
+        if(isTakeAwayAdded==false){
+            this.price = this.price+this.takeAwayPrice;
+            isTakeAwayAdded = true;
         }
     }
-
-    public String getBill() {
-        // your code goes here
-        if(isbilladded==false){
-            isbilladded=true;
-            if (this.cheese) {
-                this.bill += "Extra Cheese Added: " + this.cheesePrice + "\n";
+    public String getBill(){
+        if(isBillGenerated==false){
+            if(isCheeseAdded){
+                this.bill = this.bill+"Extra Cheese Added: "+this.cheesePrice+"\n";
             }
-            if (this.toppings) {
-                this.bill += "Extra Toppings Added: " + this.toppingsPrice + "\n";
+            if(isToppingsAdded){
+                this.bill = this.bill+"Extra Toppings Added: "+this.toppingsPrice+"\n";
             }
-            if (this.takeAway) {
-                this.bill += "Paperbag Added: " + this.takePrice + "\n";
+            if(isTakeAwayAdded){
+                this.bill = this.bill+"Paperbag Added: "+this.takeAwayPrice+"\n";
             }
-            this.bill += "Total Price: " + getPrice() + "\n";
+            this.bill = this.bill+"Total Price: "+this.price+"\n";
         }
         return this.bill;
     }
+
 }
